@@ -1,0 +1,25 @@
+{
+  "name": "oop-ortfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveaillerr/oop-ortfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/daveaillerr/oop-ortfolio/issues"
+  },
+  "homepage": "https://github.com/daveaillerr/oop-ortfolio#readme",
+  "dependencies": {
+    "react": "^19.2.4",
+    "vite": "^8.0.3"
+  }
+}

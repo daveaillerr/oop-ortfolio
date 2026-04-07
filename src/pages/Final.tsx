@@ -3,6 +3,7 @@
 // Structure mirrors Midterm.tsx — duplicate and fill in when finals arrive.
 // ─────────────────────────────────────────────────────────────────────────────
 import React from "react";
+import "./Terms.css";
 
 const Final: React.FC = () => (
   <div className="page">

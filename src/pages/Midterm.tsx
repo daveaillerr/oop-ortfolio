@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Terms.css";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // MIDTERM PAGE
@@ -146,9 +147,9 @@ const Midterm: React.FC = () => {
     <div className="page">
       <section className="section">
         <div className="container">
-          <p className="section-label">Term 1</p>
-          <h1 className="section-title">Midterm Outputs</h1>
-          <p className="section-sub">
+          <p className="section-label-terms">Term 1</p>
+          <h1 className="section-title-terms">Midterm Outputs</h1>
+          <p className="section-sub-terms">
             All quizzes, seatworks, activities, and exam content from the
             midterm period.
           </p>

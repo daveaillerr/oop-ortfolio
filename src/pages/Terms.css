@@ -1,0 +1,47 @@
+/* ─── QUIZ / QA ─── */
+.qa-item {
+  border-left: 2px solid var(--border-light); padding-left: 20px; margin-bottom: 28px;
+  transition: border-color var(--transition);
+}
+.qa-item:hover { border-color: var(--accent); }
+.qa-q { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.qa-a { font-size: 13px; color: var(--text-sec); margin-bottom: 8px; }
+.qa-exp { font-size: 12px; color: var(--text-muted); font-style: italic; }
+
+/* ─── REFLECTION ─── */
+.reflection-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #12102a 100%);
+  border: 1px solid var(--border-light); border-radius: var(--radius);
+  padding: 32px; margin-top: 24px; position: relative; overflow: hidden;
+}
+.reflection-card::before {
+  content: '"'; position: absolute; top: -10px; right: 24px;
+  font-family: Georgia, serif; font-size: 120px; color: var(--accent-glow);
+  line-height: 1; pointer-events: none;
+}
+.reflection-text { font-size: 14px; color: var(--text-sec); line-height: 1.9; font-style: italic; }
+
+/* ─── PLACEHOLDER ─── */
+.coming-soon {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 60vh; gap: 16px; text-align: center;
+}
+.coming-soon-icon { font-size: 48px; margin-bottom: 8px; }
+.coming-soon h2 { font-family: var(--font-head); font-size: 28px; font-weight: 700; }
+.coming-soon p { color: var(--text-sec); font-size: 15px; max-width: 360px; }
+
+
+.section-label-terms {
+  font-family: var(--font-code); font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px;
+  text-align: center;
+}
+.section-title-terms {
+  font-family: var(--font-head); font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700; margin-bottom: 12px;
+  text-align: center;
+}
+.section-sub-terms { 
+  font-size: 16px; color: var(--text-sec); margin-bottom: 48px; 
+  max-width: 600px; margin-left: auto; margin-right: auto; text-align: center; 
+}

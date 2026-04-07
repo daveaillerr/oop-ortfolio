@@ -1,4 +1,6 @@
 import React from "react";
+import "./Home.css";
+import "../index.css";
 
 const STUDENT = {
   name: "Dave Aillerr Rivas",
@@ -10,22 +12,18 @@ const STUDENT = {
 
 const quickCards = [
   {
-    icon: "☕",
     title: "Java & OOP",
     body: "Built and documented Java programs covering classes, objects, inheritance, polymorphism, and encapsulation.",
   },
   {
-    icon: "📋",
     title: "Quizzes & Seatworks",
     body: "Answered and explained written assessments testing core OOP concepts and Java syntax.",
   },
   {
-    icon: "🔬",
     title: "Activities & Projects",
     body: "Developed real-world mini-programs including an ATM simulator, decision-structure app, and method-based utilities.",
   },
   {
-    icon: "📖",
     title: "Reflections",
     body: "Documented insights, challenges, and learning milestones throughout the midterm and final terms.",
   },
@@ -33,7 +31,6 @@ const quickCards = [
 
 const Home: React.FC = () => (
   <div className="page">
-    {/* ── Hero ── */}
     <section className="hero">
       <div className="container">
         <p className="hero-eyebrow">E-Portfolio &middot; {STUDENT.year}</p>
@@ -55,15 +52,7 @@ const Home: React.FC = () => (
           objects to encapsulation, inheritance, and polymorphism.
         </p>
 
-        <div
-          style={{
-            marginTop: 32,
-            display: "flex",
-            gap: 8,
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
+        <div className="badge-container">
           <span className="badge">Java</span>
           <span className="badge">OOP</span>
           <span className="badge">Encapsulation</span>
@@ -74,12 +63,11 @@ const Home: React.FC = () => (
       </div>
     </section>
 
-    {/* ── About Section ── */}
     <section className="section" style={{ paddingTop: 0 }}>
       <div className="container">
-        <p className="section-label">Overview</p>
-        <h2 className="section-title">What's in this Portfolio</h2>
-        <p className="section-sub">
+        <p className="section-label-home">Overview</p>
+        <h2 className="section-title-home">What's in this Portfolio</h2>
+        <p className="section-sub-home">
           A structured showcase of academic outputs from the current school
           year.
         </p>
@@ -87,14 +75,12 @@ const Home: React.FC = () => (
         <div className="card-grid">
           {quickCards.map((c) => (
             <div className="card" key={c.title}>
-              <div className="card-icon">{c.icon}</div>
               <p className="card-title">{c.title}</p>
               <p className="card-body">{c.body}</p>
             </div>
           ))}
         </div>
 
-        {/* Code teaser */}
         <div className="card" style={{ marginTop: 0 }}>
           <p className="card-title" style={{ marginBottom: 16 }}>
             A quick taste — Java OOP

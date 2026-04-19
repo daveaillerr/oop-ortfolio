@@ -38,8 +38,8 @@ const Contact: React.FC = () => {
         <div className="container-contacts">
           <div className="contact-grid">
             <div>
-              <h1 className="section-title">Get in Touch</h1>
-              <p className="section-sub">
+              <h1 className="section-title-contact">Get in Touch</h1>
+              <p className="section-sub-contact">
                 Let's build something great together.
               </p>
 
@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="Write your name here..."
+                    placeholder="Enter your name here..."
                     required
                   />
                   <ValidationError
@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="juan@email.com"
+                    placeholder="Enter your email address..."
                     required
                   />
                   <ValidationError
@@ -143,7 +143,7 @@ const Contact: React.FC = () => {
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="Write your message here..."
+                    placeholder="Enter your message here..."
                     required
                   />
                   <ValidationError

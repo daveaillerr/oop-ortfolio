@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -12,6 +12,22 @@ const MY_NAME = "Dave Aillerr Rivas";
 
 const App: React.FC = () => {
   const [page, setPage] = useState<Page>("home");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
+    const pref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const initial = saved || pref;
+    setTheme(initial);
+    document.documentElement.setAttribute("data-theme", initial);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    localStorage.setItem("theme", next);
+    document.documentElement.setAttribute("data-theme", next);
+  };
 
   const navigate = (next: Page) => {
     setPage(next);
@@ -33,7 +49,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Navbar current={page} onNavigate={navigate} studentName={MY_NAME} />
+      <Navbar current={page} onNavigate={navigate} studentName={MY_NAME} theme={theme} onToggleTheme={toggleTheme} />
       <main>{renderPage()}</main>
     </>
   );

@@ -1,0 +1,411 @@
+/* ─── TABS ─── */
+.tab-container {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 36px;
+  background: var(--bg-card-2);
+  border-radius: var(--radius);
+  padding: 6px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  /* Prevent the scrollable tabs from causing page-level overflow */
+  max-width: 100%;
+}
+.tab-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+.tab-btn {
+  flex: 1 1 auto;   /* grow to fill evenly on desktop */
+  min-width: max-content; /* never clip label text */
+  padding: 9px 16px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-sec);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  background: var(--border-light);
+  color: var(--text);
+}
+
+.tab-btn.active {
+  background: var(--border);
+  border: 1px solid var(--text);
+  color: var(--text);
+}
+
+.tab-btn .icon {
+  font-size: 14px;
+}
+
+/* ─── CARD COMPONENTS ─── */
+.terms-card {
+  margin-bottom: 16px;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-label-meta {
+  font-family: var(--font-code);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.card-title-lg {
+  font-size: 17px;
+}
+
+.code-toggle-btn {
+  background: none; 
+  border: none;
+  border-radius: 6px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: clamp(20px, 5vw, 40px);
+  height: clamp(20px, 5vw, 40px);
+}
+
+.Hide {
+  transform: rotate(180deg);
+  transition: all 0.2s ease;
+}
+
+.Hide:active {
+  transform: rotate(0deg);
+  transition: all 0.2s ease;
+}
+
+.download-btn {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: clamp(20px, 5vw, 40px);
+  height: clamp(20px, 5vw, 40px);
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.loading-state {
+  font-family: var(--font-code);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  font-style: italic;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.card-description {
+  font-size: 13px;
+  color: var(--text-sec);
+  margin-top: 12px;
+  line-height: 1.8;
+}
+
+/* ─── WINDOW FRAME ─── */
+.window-frame-animated {
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.12); /* Premium border */
+  background: var(--bg-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Premium shadow */
+  animation: fadeIn 0.4s ease;
+}
+
+.code-window { 
+  border-color: rgba(0,0,0,0.1);
+}
+
+.markdown-window { 
+  border-color: var(--border);
+}
+
+.code-header {
+  background: var(--accent-glow);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Clear border */
+}
+
+.code-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.code-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.code-dots span:nth-child(1) { background: #ff5f56; }
+.code-dots span:nth-child(2) { background: #ffbd2e; }
+.code-dots span:nth-child(3) { background: #27c93f; }
+
+.code-header span {
+  font-family: var(--font-code);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.window-content {
+  padding: 0;
+}
+
+.learnings-box {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--bg-card-2);
+  border-radius: 8px;
+  border-left: 2px solid var(--border);
+}
+
+.learnings-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  font-family: var(--font-code);
+}
+
+.learnings-text {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.8;
+}
+
+/* ─── EXAM ─── */
+.exam-summary-text {
+  font-size: 14px;
+  color: var(--text-sec);
+  line-height: 1.8;
+}
+
+.margin-bottom-sm { margin-bottom: 12px; }
+.margin-bottom-md { margin-bottom: 16px; }
+.margin-bottom-lg { margin-bottom: 24px; }
+/* ─── MARKDOWN ─── */
+.markdown-container {
+  animation: fadeIn 0.3s ease;
+  line-height: 1.8;
+  color: var(--text);
+  font-size: 14px;
+  padding: 24px clamp(16px, 5vw, 40px);
+}
+
+.markdown-container h1, 
+.markdown-container h2,
+.markdown-container h3 {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+}
+
+.markdown-container h1 { font-size: 24px; color: #2563eb; border-bottom: 2px solid var(--border-light); padding-bottom: 16px; width: fit-content; margin-inline: auto; }
+.markdown-container h2 { font-size: 20px; color: #0891b2; }
+.markdown-container h3 { font-size: 17px; color: #4f46e5; }
+
+.markdown-container p {
+  margin-bottom: 1.25rem;
+}
+
+.markdown-container ul, 
+.markdown-container ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.markdown-container li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.markdown-container li::marker {
+  color: var(--text-muted);
+}
+
+.markdown-container ul { list-style-type: disc; }
+.markdown-container ol { list-style-type: decimal; }
+
+.markdown-container strong {
+  color: #c2410c; /* Vibrant orange/amber */
+  font-weight: 700;
+}
+
+.markdown-container blockquote {
+  border-left: 3px solid var(--border);
+  padding: 8px 0 8px 24px;
+  margin: 1.5rem 0;
+    color: var(--text-sec);
+  font-style: italic;
+  background: var(--bg-card-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ─── TABLES ─── */
+.markdown-container table,
+.markdown-inside-code table {
+  width: max-content;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem auto;
+  font-size: 14px; /* Slightly larger text for readability */
+  background: var(--bg-card-2);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap; /* Prevent squeezing columns on mobile */
+}
+
+/* Subtly customized table horizontal scrollbar */
+.markdown-container table::-webkit-scrollbar,
+.markdown-inside-code table::-webkit-scrollbar {
+  height: 6px;
+}
+.markdown-container table::-webkit-scrollbar-track,
+.markdown-inside-code table::-webkit-scrollbar-track {
+  background: transparent;
+}
+.markdown-container table::-webkit-scrollbar-thumb,
+.markdown-inside-code table::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+.markdown-container th,
+.markdown-container td,
+.markdown-inside-code th,
+.markdown-inside-code td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.markdown-container th,
+.markdown-inside-code th {
+  background: var(--border-light);
+  color: var(--text);
+  font-weight: 600;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.markdown-container tr:last-child td,
+.markdown-inside-code tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-container tr:nth-child(even),
+.markdown-inside-code tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.markdown-container td,
+.markdown-inside-code td {
+  color: var(--text); /* Higher contrast for data */
+}
+
+/* ─── INLINE & BLOCK CODE ─── */
+.markdown-container code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--cyan);
+}
+
+.markdown-container pre {
+  background: var(--bg-card-2);
+  padding: 0; /* Let syntax highlighter handle padding */
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  width: 75%; /* Shrink to fit */
+  max-width: 100%; /* Fully responsive */
+  margin: 1.5rem auto; /* Centered */
+  box-shadow: none;
+}
+
+.markdown-container pre > div {
+  margin: 0 !important; /* Override SyntaxHighlighter default margin */
+  border-radius: 8px !important;
+}
+
+.markdown-container pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  display: block;
+}
+
+.markdown-container hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.tab-panel-animated {
+  animation: fadeIn 0.3s ease;
+}
+
+.code-pre {
+  white-space: pre;
+}
+
+.markdown-inside-code {
+  padding: 0; /* Reset padding to let pre/markdown handles it */
+  background: var(--accent-glow);
+}
+
+
+/* Ensure markdown elements inside the code window don't have excessive margins */
+.markdown-inside-code > *:first-child { margin-top: 0; }
+.markdown-inside-code > *:last-child { margin-bottom: 0; }
+
+/* ─── RESPONSIVENESS ─── */
+@media (max-width: 600px) {
+  .markdown-container {
+    padding: clamp(16px, 5vw, 24px);
+  }
+  .markdown-container h1 { font-size: 20px; }
+  .markdown-container h2 { font-size: 18px; }
+  .markdown-container h3 { font-size: 16px; }
+  .window-frame-animated {
+    margin-top: 1rem;
+  }
+}

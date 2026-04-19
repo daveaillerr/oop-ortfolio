@@ -1,143 +1,380 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./Terms.css";
+import "./Midterm.css";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// MIDTERM PAGE
-// Instructions: Replace all placeholder text below with your actual content.
-// Each section maps to a requirement in your rubric.
-// ─────────────────────────────────────────────────────────────────────────────
+// ── DATA STRUCTURES ──────────────────────────────────────────────────────────
 
-// ── 1. QUIZ DATA ─────────────────────────────────────────────────────────────
-const quizzes = [
-  {
-    q: "What is Object-Oriented Programming?",
-    a: "OOP is a programming paradigm that organizes software around objects — data structures that combine state (fields) and behavior (methods).",
-    exp: "OOP makes large programs easier to manage and reuse through the four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.",
-  },
-  {
-    q: "What is the difference between a class and an object?",
-    a: "A class is a blueprint or template; an object is a specific instance created from that class.",
-    exp: "Think of a class as a cookie cutter and an object as the actual cookie. Multiple cookies (objects) can come from one cutter (class).",
-  },
-  {
-    q: "What is encapsulation?",
-    a: "Encapsulation is the practice of bundling data and methods that operate on that data within a single class, and restricting access using access modifiers.",
-    exp: "Private fields with public getters/setters is a classic example. It protects the internal state of an object from outside interference.",
-  },
-  // ← Add more quiz items here
-];
+interface MidtermItem {
+  label: string;
+  title: string;
+  markdownPath?: string;
+  filename?: string;
+  codePath?: string;
+  learnings?: string;
+  files?: string[];
+}
 
-// ── 2. SEATWORK DATA ─────────────────────────────────────────────────────────
-const seatworks = [
-  {
-    q: "Write a Java class called Circle with a radius field. Add a method to compute the area.",
-    a: "Created a Circle class with a private double radius field. The getArea() method returns Math.PI * radius * radius.",
-    exp: "Practiced encapsulation by keeping radius private and exposing behavior via a public method.",
-  },
-  {
-    q: 'Explain the "this" keyword in Java.',
-    a: '"this" refers to the current instance of the class. It is used to differentiate instance variables from local variables with the same name.',
-    exp: "Common in constructors: this.name = name; allows the parameter name and the field name to coexist without ambiguity.",
-  },
-  // ← Add more seatwork items here
-];
+const midtermContent: Record<Tab, MidtermItem[]> = {
+  quizzes: [
+    {
+      label: "Quiz",
+      title: "Midterm Quiz #1",
+      learnings:
+        "In this quiz, I learned about control flow statements in Java such as if-else, switch, and loops, which are used to control the flow of program execution based on conditions. I also learned about input and output in Java using the Scanner class, BufferedReader, and Console class for user input and System.out.println for displaying results. In addition, I understood the concept of methods, which are blocks of code used to organize programs and make them reusable and easier to manage. Overall, the quiz helped me understand how control flow, input/output, and methods work together to create functional Java programs.",
+    },
+  ],
+  seatwork: [
+    {
+      label: "Seatwork",
+      title: "Midterm Seatwork #1 - Operators and Expressions",
+      learnings:
+        "In this seatwork, I learned about the different operators and expressions in Java. I also learned how to evaluate expressions in Java without using anything but my hands and brain. It was challenging at first but I got the hang of it eventually.",
+      markdownPath: "",
+    },
+    {
+      label: "Seatwork",
+      title: "Midterm Seatwork #2 - Smart Wallet System",
+      learnings: "",
+      markdownPath: "/markdown/seatwork_2.md",
+      filename: "SmartWalletSystemRivas.java",
+      files: [
+        "BSIT2-3_Rivas_DaveAillerr_SmartWalletSystem.pdf",
+        "SmartWalletRivas.java",
+      ],
+    },
+    {
+      label: "Seatwork",
+      title: "Midterm Seatwork #3 - Student Age Analyzer",
+      learnings: "",
+      markdownPath: "/markdown/seatwork_3.md",
+      filename: "StudentAgeAnalyzerRivas.java",
+      files: [
+        "BSIT_Rivas_DaveAillerr_StudentAgeAnalyzer.pdf",
+        "StudentAgeAnalyzerRivas.java",
+      ],
+    },
+  ],
+  activities: [
+    {
+      label: "Activity",
+      title: "Midterm Activity #1 - Variables",
+      learnings: "",
+      markdownPath: "/markdown/activity_1.md",
+      files: ["BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity#1.pdf"],
+    },
+    {
+      label: "Activity",
+      title: "Midterm Activity #2 - Operators",
+      learnings: "",
+      markdownPath: "/markdown/activity_2.md",
+      files: ["BSIT2-3_Rivas_DaveAillerr_OperatorsActivity#2.pdf"],
+    },
+    {
+      label: "Activity",
+      title: "Midterm Activity #3 - Basic ATM System",
+      learnings: "",
+      markdownPath: "/markdown/activity_3.md",
+      codePath: "/markdown/code_activity_3.md",
+      filename: "BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
+      files: [
+        "BSIT2-3_Rivas_DaveAillerr_BasicATMSystem.pdf",
+        "BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
+      ],
+    },
 
-// ── 3. ACTIVITIES DATA ────────────────────────────────────────────────────────
-const activities = [
-  {
-    title: "ATM Simulator",
-    description:
-      "Developed a console-based ATM program in Java that allows users to check their balance, deposit funds, and withdraw money. Applied encapsulation by keeping balance private and exposing operations through public methods.",
-    learnings:
-      "Learned how to design a class with meaningful state and behavior. Understood the importance of input validation (e.g., preventing negative withdrawals).",
-    code: `public class ATM {
-    private double balance;
-
-    public ATM(double initialBalance) {
-        this.balance = initialBalance;
-    }
-
-    public void deposit(double amount) {
-        if (amount > 0) balance += amount;
-    }
-
-    public boolean withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            return true;
-        }
-        return false;
-    }
-
-    public double getBalance() { return balance; }
-}`,
-    filename: "ATM.java",
-  },
-  {
-    title: "Decision Structures Program",
-    description:
-      "Built a Java program that uses if-else and switch statements to handle different user scenarios, such as grading, age categorization, and day-of-week labeling.",
-    learnings:
-      "Understood how to model real-world decision logic in code. Practiced nesting conditions and using switch-case for cleaner multi-branch logic.",
-    code: `public class GradeClassifier {
-    public static String classify(int score) {
-        if (score >= 90) return "Excellent";
-        else if (score >= 80) return "Very Good";
-        else if (score >= 75) return "Good";
-        else if (score >= 60) return "Needs Improvement";
-        else return "Failed";
-    }
-
-    public static void main(String[] args) {
-        System.out.println(classify(88)); // Very Good
-    }
-}`,
-    filename: "GradeClassifier.java",
-  },
-  {
-    title: "Methods & Parameters Activity",
-    description:
-      "Created a utility class with multiple static methods demonstrating how methods accept parameters, return values, and can be reused across a program.",
-    learnings:
-      "Gained a strong understanding of method signatures, return types, and the difference between void and value-returning methods.",
-    code: `public class MathUtils {
-    public static int add(int a, int b) {
-        return a + b;
-    }
-
-    public static double average(int[] nums) {
-        int sum = 0;
-        for (int n : nums) sum += n;
-        return (double) sum / nums.length;
-    }
-
-    public static boolean isEven(int n) {
-        return n % 2 == 0;
-    }
-}`,
-    filename: "MathUtils.java",
-  },
-  // ← Add more activities here
-];
-
-// ── 4. EXAM REFLECTION ───────────────────────────────────────────────────────
-const examReflection = {
-  summary:
-    "The midterm exam covered Java syntax, class design, and OOP principles. I answered questions on encapsulation and wrote a short program demonstrating object instantiation and method calls.",
-  reflection:
-    "Going into the exam, I felt confident about encapsulation and constructors. I found some questions on method overloading tricky, which showed me I need more practice distinguishing overloading from overriding. Overall, the exam helped me see where my understanding is solid and where I still have gaps to fill before the final term.",
+    {
+      label: "Activity",
+      title: "Midterm Activity #4 - Scholarship Qualification System",
+      learnings: "",
+      markdownPath: "/markdown/activity_4.md",
+      codePath: "/markdown/code_activity_4.md",
+      filename: "EnrollmentAssessmentSystemRivas.java",
+      files: [
+        "BSIT2-3_Rivas_DaveAillerr_StudentEnrollmentAssessmentSystem.pdf",
+        "EnrollmentAssessmentSystemRivas.java",
+      ],
+    },
+    {
+      label: "Activity",
+      title: "Midterm Activity #5 - Personal Expense Tracker",
+      learnings: "",
+      markdownPath: "/markdown/activity_5.md",
+      codePath: "/markdown/code_activity_5.md",
+      filename: "ExpenseTrackerRivas.java",
+      files: ["ExpenseTrackerRivas.pdf", "ExpenseTrackerRivas.java"],
+    },
+  ],
+  others: [
+    {
+      label: "Others",
+      title: "About Me",
+      learnings:
+        "I learned a little bit about myself in this activity. Also shared my expectations for this subject.",
+      markdownPath: "/markdown/about_me.md",
+      files: ["BSIT2-3_Rivas_DaveAillerr_AboutMe.pdf"],
+    },
+    {
+      label: "Assignment",
+      title: "Midterm Assignment #1 - Introduction to Java",
+      learnings:
+        "In this assignment, I learned that Java is a high-level, object-oriented programming language known for its simplicity and security, and one of its key features is platform independence, which allows programs to run on different systems through the Java Virtual Machine (JVM). I also learned the main components of a Java program, such as classes, methods, and variables, as well as the differences between JDK, JRE, and JVM. Additionally, I understood that Java is both compiled and interpreted, since the code is first compiled into bytecode and then executed by the JVM. Overall, this activity helped me better understand how Java works and why it is widely used.",
+      markdownPath: "/markdown/assignment_1.md",
+      files: ["BSIT2-3_Rivas_DaveAillerr_IntroductiontoJava.pdf"],
+    },
+  ],
+  exam: [
+    {
+      label: "Exam Reflection",
+      title: "Midterm Exam Recap",
+      learnings:
+        "Going into the exam, I felt confident about encapsulation and constructors. I found some questions on method overloading tricky, which showed me I need more practice distinguishing overloading from overriding.",
+    },
+  ],
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-type Tab = "quizzes" | "seatwork" | "activities" | "exam";
+type Tab = "quizzes" | "seatwork" | "activities" | "others" | "exam";
 
 const tabs: { id: Tab; label: string; icon: string }[] = [
   { id: "quizzes", label: "Quizzes", icon: "📝" },
   { id: "seatwork", label: "Seatwork", icon: "✏️" },
   { id: "activities", label: "Activities", icon: "💻" },
+  { id: "others", label: "Others", icon: "🔗" },
   { id: "exam", label: "Midterm Exam", icon: "📄" },
 ];
+
+const WindowFrame: React.FC<{
+  children: React.ReactNode;
+  filename?: string;
+  isCode?: boolean;
+}> = ({ children, filename, isCode }) => (
+  <div
+    className={`window-frame-animated ${isCode ? "code-window" : "markdown-window"}`}
+  >
+    <div className="code-header">
+      <div className="code-dots">
+        <span />
+        <span />
+        <span />
+      </div>
+      <span>{filename}</span>
+    </div>
+    <div className="window-content">{children}</div>
+  </div>
+);
+
+interface TermOutputCardProps {
+  label: string;
+  title: string;
+  description?: string;
+  markdownPath?: string;
+  filename?: string;
+  codePath?: string;
+  learnings?: string;
+  files?: string | string[];
+  isExpanded: boolean;
+  onToggle: () => void;
+}
+
+const TermOutputCard: React.FC<TermOutputCardProps> = ({
+  label,
+  title,
+  description,
+  markdownPath,
+  filename,
+  codePath,
+  learnings,
+  files,
+  isExpanded,
+  onToggle,
+}) => {
+  const [markdownContent, setMarkdownContent] = useState<string>("");
+  const [codeContent, setCodeContent] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isExpanded) {
+      const fetchData = async () => {
+        setIsLoading(true);
+        try {
+          if (markdownPath) {
+            const res = await fetch(markdownPath);
+            const text = await res.text();
+            setMarkdownContent(text);
+          }
+          if (codePath) {
+            const res = await fetch(codePath);
+            const text = await res.text();
+            setCodeContent(text);
+          }
+        } catch (err) {
+          console.error("Failed to fetch markdown:", err);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchData();
+    }
+  }, [isExpanded, markdownPath, codePath]);
+
+  const hasCollapsible = !!(markdownPath || codePath);
+
+  const formattedCode =
+    codeContent && !codeContent.trim().startsWith("```")
+      ? `\`\`\`java\n${codeContent}\n\`\`\``
+      : codeContent;
+
+  const downloadAll = () => {
+    // 1. Determine what we are downloading
+    const targetLinks: string[] = [];
+
+    // Only download files explicitly placed in the files array
+    if (files && files.length > 0) {
+      if (typeof files === "string") targetLinks.push(files);
+      else targetLinks.push(...files);
+    }
+
+    // 2. Safely Process and Download simultaneously
+    targetLinks.forEach((link, i) => {
+      // Clean accidental public paths
+      let cleanPath = link.startsWith("/public") ? link.substring(7) : link;
+
+      // Ensure bare file names route gracefully to the public/files/ folder
+      if (!cleanPath.startsWith("/") && !cleanPath.startsWith("http")) {
+        cleanPath = `/files/seatwork3/${cleanPath}`;
+      }
+
+      const encodedPath = cleanPath
+        .split("/")
+        .map((segment) => encodeURIComponent(segment))
+        .join("/");
+
+      setTimeout(() => {
+        const a = document.createElement("a");
+        a.href = encodedPath;
+        // Keep the original filename
+        a.download = cleanPath.split("/").pop() || "download";
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }, i * 300);
+    });
+  };
+
+  return (
+    <div className="card terms-card">
+      <div className="card-header-flex">
+        <div>
+          <p className="card-label-meta">{label}</p>
+          <p className="card-title card-title-lg">{title}</p>
+        </div>
+        <div className="card-actions">
+          {files && files.length > 0 && (
+            <button onClick={downloadAll} className="download-btn">
+              <img src="/src/assets/save-btn.svg" alt="Download" className="filter" />
+            </button>
+          )}
+          {hasCollapsible && (
+            <button onClick={onToggle} className="code-toggle-btn">
+              {isExpanded ? (
+                <img
+                  src="/src/assets/up-down-btn.svg"
+                  alt="Hide"
+                  className="filter Hide"
+                />
+              ) : (
+                <img src="/src/assets/up-down-btn.svg" alt="View" className="filter" />
+              )}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {description && <p className="card-description">{description}</p>}
+
+      {isExpanded && isLoading && (
+        <div className="loading-state">Loading content...</div>
+      )}
+
+      {isExpanded && !isLoading && markdownContent && (
+        <WindowFrame filename="document.md">
+          <div className="markdown-container">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                code({ node, inline, className, children, ...props }: any) {
+                  const match = /language-(\w+)/.exec(className || "");
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      style={vscDarkPlus as any}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
+            >
+              {markdownContent}
+            </ReactMarkdown>
+          </div>
+        </WindowFrame>
+      )}
+
+      {isExpanded && !isLoading && formattedCode && (
+        <WindowFrame filename={filename || "code.java"} isCode>
+          <div className="code-block attached">
+            <div className="markdown-inside-code">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  code({ node, inline, className, children, ...props }: any) {
+                    const match = /language-(\w+)/.exec(className || "");
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        style={vscDarkPlus as any}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, "")}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  },
+                }}
+              >
+                {formattedCode}
+              </ReactMarkdown>
+            </div>
+          </div>
+        </WindowFrame>
+      )}
+
+      {learnings && (
+        <div className="learnings-box">
+          <p className="learnings-label">LEARNINGS</p>
+          <p className="learnings-text">{learnings}</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Midterm: React.FC = () => {
   const [active, setActive] = useState<Tab>("quizzes");
@@ -155,261 +392,38 @@ const Midterm: React.FC = () => {
           </p>
 
           {/* Tab bar */}
-          <div
-            style={{
-              display: "flex",
-              gap: 4,
-              marginBottom: 36,
-              background: "var(--bg-card)",
-              borderRadius: "var(--radius)",
-              padding: 6,
-              border: "1px solid var(--border)",
-            }}
-          >
+          <div className="tab-container">
             {tabs.map((t) => (
               <button
                 key={t.id}
-                onClick={() => setActive(t.id)}
-                style={{
-                  flex: 1,
-                  padding: "9px 12px",
-                  background: active === t.id ? "var(--accent-glow)" : "none",
-                  border:
-                    active === t.id
-                      ? "1px solid var(--accent)"
-                      : "1px solid transparent",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                  fontFamily: "var(--font-body)",
-                  fontSize: 13,
-                  color:
-                    active === t.id ? "var(--accent-light)" : "var(--text-sec)",
-                  transition: "all 0.2s ease",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 6,
+                onClick={() => {
+                  setActive(t.id);
+                  setExpanded(null); // Reset expansion on tab switch
                 }}
+                className={`tab-btn ${active === t.id ? "active" : ""}`}
               >
-                <span style={{ fontSize: 14 }}>{t.icon}</span>
+                <span className="icon">{t.icon}</span>
                 {t.label}
               </button>
             ))}
           </div>
 
-          {/* ── QUIZZES ── */}
-          {active === "quizzes" && (
-            <div style={{ animation: "fadeIn 0.3s ease" }}>
-              <p className="section-label" style={{ marginBottom: 24 }}>
-                {quizzes.length} Questions
-              </p>
-              {quizzes.map((item, i) => (
-                <div className="qa-item" key={i}>
-                  <p className="qa-q">
-                    <span
-                      style={{
-                        color: "var(--accent)",
-                        marginRight: 8,
-                        fontFamily: "var(--font-code)",
-                      }}
-                    >
-                      Q{i + 1}.
-                    </span>
-                    {item.q}
-                  </p>
-                  <p className="qa-a">
-                    <strong
-                      style={{
-                        color: "var(--text)",
-                        fontSize: 12,
-                        marginRight: 6,
-                      }}
-                    >
-                      A:
-                    </strong>
-                    {item.a}
-                  </p>
-                  <p className="qa-exp">💡 {item.exp}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* ── SEATWORK ── */}
-          {active === "seatwork" && (
-            <div style={{ animation: "fadeIn 0.3s ease" }}>
-              <p className="section-label" style={{ marginBottom: 24 }}>
-                {seatworks.length} Items
-              </p>
-              {seatworks.map((item, i) => (
-                <div className="qa-item" key={i}>
-                  <p className="qa-q">
-                    <span
-                      style={{
-                        color: "var(--cyan)",
-                        marginRight: 8,
-                        fontFamily: "var(--font-code)",
-                      }}
-                    >
-                      #{i + 1}
-                    </span>
-                    {item.q}
-                  </p>
-                  <p className="qa-a">
-                    <strong
-                      style={{
-                        color: "var(--text)",
-                        fontSize: 12,
-                        marginRight: 6,
-                      }}
-                    >
-                      Answer:
-                    </strong>
-                    {item.a}
-                  </p>
-                  <p className="qa-exp">💡 {item.exp}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* ── ACTIVITIES ── */}
-          {active === "activities" && (
-            <div style={{ animation: "fadeIn 0.3s ease" }}>
-              {activities.map((act, i) => (
-                <div className="card" key={i} style={{ marginBottom: 16 }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <div>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-code)",
-                          fontSize: 11,
-                          color: "var(--accent-light)",
-                          marginBottom: 6,
-                        }}
-                      >
-                        Activity {i + 1}
-                      </p>
-                      <p className="card-title" style={{ fontSize: 17 }}>
-                        {act.title}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setExpanded(expanded === i ? null : i)}
-                      style={{
-                        background: "var(--bg-card-2)",
-                        border: "1px solid var(--border)",
-                        borderRadius: 6,
-                        padding: "6px 12px",
-                        cursor: "pointer",
-                        fontSize: 12,
-                        color: "var(--text-sec)",
-                        fontFamily: "var(--font-body)",
-                        transition: "all 0.2s ease",
-                      }}
-                    >
-                      {expanded === i ? "Hide Code ↑" : "View Code ↓"}
-                    </button>
-                  </div>
-
-                  <p
-                    style={{
-                      fontSize: 13,
-                      color: "var(--text-sec)",
-                      marginTop: 12,
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {act.description}
-                  </p>
-
-                  {expanded === i && (
-                    <div
-                      style={{ marginTop: 16, animation: "fadeIn 0.25s ease" }}
-                    >
-                      <div className="code-header">
-                        <div className="code-dots">
-                          <span />
-                          <span />
-                          <span />
-                        </div>
-                        <span>{act.filename}</span>
-                      </div>
-                      <div
-                        className="code-block attached"
-                        style={{ whiteSpace: "pre" }}
-                      >
-                        {act.code}
-                      </div>
-                    </div>
-                  )}
-
-                  <div
-                    style={{
-                      marginTop: 16,
-                      padding: "12px 16px",
-                      background: "var(--bg-card-2)",
-                      borderRadius: 8,
-                      borderLeft: "2px solid var(--cyan)",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: 11,
-                        color: "var(--cyan)",
-                        marginBottom: 4,
-                        fontFamily: "var(--font-code)",
-                      }}
-                    >
-                      LEARNINGS
-                    </p>
-                    <p
-                      style={{
-                        fontSize: 13,
-                        color: "var(--text-sec)",
-                        lineHeight: 1.8,
-                      }}
-                    >
-                      {act.learnings}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* ── EXAM ── */}
-          {active === "exam" && (
-            <div style={{ animation: "fadeIn 0.3s ease" }}>
-              <div className="card" style={{ marginBottom: 16 }}>
-                <p className="section-label" style={{ marginBottom: 12 }}>
-                  Exam Summary
-                </p>
-                <p
-                  style={{
-                    fontSize: 14,
-                    color: "var(--text-sec)",
-                    lineHeight: 1.8,
-                  }}
-                >
-                  {examReflection.summary}
-                </p>
-              </div>
-
-              <div className="reflection-card">
-                <p className="section-label" style={{ marginBottom: 16 }}>
-                  Reflection
-                </p>
-                <p className="reflection-text">{examReflection.reflection}</p>
-              </div>
-            </div>
-          )}
+          <div className="tab-panel-animated">
+            {midtermContent[active].map((item, i) => (
+              <TermOutputCard
+                key={`${active}-${i}`} // Use more unique key to prevent component reuse
+                label={item.label}
+                title={item.title}
+                markdownPath={item.markdownPath}
+                codePath={item.codePath}
+                filename={item.filename}
+                learnings={item.learnings}
+                files={item.files}
+                isExpanded={expanded === i}
+                onToggle={() => setExpanded(expanded === i ? null : i)}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

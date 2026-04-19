@@ -1,35 +1,151 @@
 /* ─── NAVBAR ─── */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(7, 7, 15, 0.85);
+  background: var(--bg-nav);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: clamp(20px, 5vw, 100px);
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
   height: 72px;
-  display: flex; align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   margin-top: clamp(10px, 5vw, 24px);
-  max-width: clamp(1000px, 90vw, 1100px);
-  text-align: center;
+  max-width: clamp(320px, 90vw, 1100px);
   margin-left: auto;
   margin-right: auto;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Expand navbar height when mobile menu is open */
+.navbar.menu-open {
+  height: calc(72px + 4 * 48px + 16px);
+  border-radius: clamp(16px, 4vw, 28px);
+}
+
 .navbar-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 72px;
+  flex-shrink: 0;
+  padding: 0 24px;
 }
+
 .navbar-logo {
   font-family: var(--font-code);
-  font-size: 16px;
-  color: var(--accent-light);
+  font-size: clamp(14px, 2vw, 16px);
+  color: var(--text);
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
 .navbar-logo span { color: var(--text-muted); }
-.navbar-links { display: flex; gap: 10px; }
-.nav-btn {
-  background: none; border: none; cursor: pointer;
-  font-family: var(--font-body); font-size: 16px;
-  color: var(--text-sec); padding: 10px 18px; border-radius: var(--radius-sm);
-  transition: color var(--transition), background var(--transition);
+
+/* ── Desktop links (hidden on mobile) ── */
+.navbar-links {
+  display: flex;
+  gap: 4px;
 }
-.nav-btn:hover { color: var(--text); background: var(--bg-card); }
-.nav-btn.active { color: var(--accent-light); background: var(--accent-glow); }
+
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-sec);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+.nav-btn:hover { color: var(--text); background: var(--border-light); }
+.nav-btn.active { color: var(--text); background: var(--border); }
+
+/* ── Mobile right controls (hidden on desktop) ── */
+.navbar-mobile-right {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Hamburger icon ── */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+.hamburger:hover { background: var(--border-light); }
+
+.ham-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animate bars into X when open */
+.ham-bar.open:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.ham-bar.open:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.ham-bar.open:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile dropdown menu ── */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  padding: 0 12px 12px;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.mobile-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-sec);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  transition: all var(--transition);
+  height: 48px;
+}
+.mobile-nav-btn:hover { color: var(--text); background: var(--border-light); }
+.mobile-nav-btn.active { color: var(--text); background: var(--border); }
+
+/* ─── RESPONSIVE BREAKPOINT ─── */
+@media (max-width: 640px) {
+  .navbar { height: 60px; }
+  .navbar.menu-open { height: calc(60px + 4 * 48px + 16px); }
+  .navbar-inner { height: 60px; padding: 0 16px; }
+
+  /* Hide desktop links, show hamburger controls */
+  .navbar-links { display: none; }
+  .navbar-mobile-right { display: flex; }
+  .mobile-menu { display: flex; }
+}

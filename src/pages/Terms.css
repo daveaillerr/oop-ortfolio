@@ -3,20 +3,21 @@
   border-left: 2px solid var(--border-light); padding-left: 20px; margin-bottom: 28px;
   transition: border-color var(--transition);
 }
-.qa-item:hover { border-color: var(--accent); }
+.qa-item:hover { border-color: var(--text); }
 .qa-q { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
 .qa-a { font-size: 13px; color: var(--text-sec); margin-bottom: 8px; }
 .qa-exp { font-size: 12px; color: var(--text-muted); font-style: italic; }
 
 /* ─── REFLECTION ─── */
 .reflection-card {
-  background: linear-gradient(135deg, var(--bg-card) 0%, #12102a 100%);
-  border: 1px solid var(--border-light); border-radius: var(--radius);
+  background: var(--bg-card-2);
+  border: 1px solid var(--border); border-radius: var(--radius);
   padding: 32px; margin-top: 24px; position: relative; overflow: hidden;
+  box-shadow: var(--shadow);
 }
 .reflection-card::before {
   content: '"'; position: absolute; top: -10px; right: 24px;
-  font-family: Georgia, serif; font-size: 120px; color: var(--accent-glow);
+  font-family: Georgia, serif; font-size: 120px; color: var(--border);
   line-height: 1; pointer-events: none;
 }
 .reflection-text { font-size: 14px; color: var(--text-sec); line-height: 1.9; font-style: italic; }
@@ -33,7 +34,7 @@
 
 .section-label-terms {
   font-family: var(--font-code); font-size: 13px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
   text-align: center;
 }
 .section-title-terms {

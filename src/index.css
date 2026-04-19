@@ -4,25 +4,45 @@
 [hidden] { display: none !important; }
 
 :root {
-  --bg: #07070f;
-  --bg-card: #0e0e1c;
-  --bg-card-2: #13132a;
-  --accent: #7c5ef5;
-  --accent-glow: #7c5ef530;
-  --accent-light: #a48ffb;
-  --cyan: #2dd4c8;
-  --cyan-dim: #2dd4c820;
-  --text: #eeeeff;
-  --text-sec: #8888b0;
-  --text-muted: #4a4a70;
-  --border: #1c1c38;
-  --border-light: #28284a;
+  --bg: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-2: #f8f8f8;
+  --accent: #000000;
+  --accent-glow: rgba(0, 0, 0, 0.05);
+  --accent-light: #333333;
+  --cyan: #444444;
+  --cyan-dim: rgba(0, 0, 0, 0.03);
+  --text: #1a1a1a;
+  --text-sec: #666666;
+  --text-muted: #999999;
+  --border: #e5e5e5;
+  --border-light: #f0f0f0;
   --font-head: 'Sora', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-code: 'JetBrains Mono', monospace;
   --radius: 12px;
   --radius-sm: 6px;
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --bg-nav: rgba(255, 255, 255, 0.85);
+}
+
+:root[data-theme='dark'] {
+  --bg: #121212;
+  --bg-card: #1c1c1c;
+  --bg-card-2: #242424;
+  --accent: #ffffff;
+  --accent-glow: rgba(255, 255, 255, 0.05);
+  --accent-light: #cccccc;
+  --cyan: #eeeeee;
+  --cyan-dim: rgba(255, 255, 255, 0.03);
+  --text: #e0e0e0;
+  --text-sec: #a0a0a0;
+  --text-muted: #777777;
+  --border: #333333;
+  --border-light: #444444;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --bg-nav: rgba(18, 18, 18, 0.85);
 }
 
 html { scroll-behavior: smooth; }
@@ -40,7 +60,7 @@ body {
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
 
 /* ─── LAYOUT ─── */
 .container { 
@@ -54,7 +74,7 @@ body {
 
 
 /* ─── PAGE WRAPPER ─── */
-.page { padding-top: 72px; min-height: 100vh; animation: fadeIn 1s ease; }
+.page { padding-top: 72px; min-height: 100vh; animation: fadeIn 1s ease; overflow-x: hidden; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 /* ─── FOOTER ─── */
@@ -68,3 +88,7 @@ body {
 
 /* ─── DIVIDER ─── */
 .hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ─── ICON INVERT (dark mode) ─── */
+img.filter { transition: filter 0.25s ease; }
+:root[data-theme='dark'] img.filter { filter: invert(1); }

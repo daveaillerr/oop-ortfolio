@@ -1,6 +1,9 @@
 import React from "react";
 import "./Contact.css";
 import { useForm, ValidationError } from "@formspree/react";
+import gmailIcon from "../assets/gmail.svg";
+import githubIcon from "../assets/github.svg";
+import facebookIcon from "../assets/facebook.svg";
 
 const INFO = {
   email: "drivas.aillerr@email.com",
@@ -50,7 +53,7 @@ const Contact: React.FC = () => {
                 <div className="contact-item">
                   <div className="contact-icon-wrap">
                     <img
-                      src="./src/assets/gmail.svg"
+                      src={gmailIcon}
                       alt="gmail"
                       className="filter"
                     />
@@ -71,7 +74,7 @@ const Contact: React.FC = () => {
                 <div className="contact-item">
                   <div className="contact-icon-wrap">
                     <img
-                      src="./src/assets/github.svg"
+                      src={githubIcon}
                       alt="github"
                       className="filter"
                     />
@@ -92,7 +95,7 @@ const Contact: React.FC = () => {
                 <div className="contact-item">
                   <div className="contact-icon-wrap">
                     <img
-                      src="./src/assets/facebook.svg"
+                      src={facebookIcon}
                       alt="facebook"
                       className="filter"
                     />

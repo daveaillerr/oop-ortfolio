@@ -5,6 +5,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./Terms.css";
 import "./Midterm.css";
+import saveBtnIcon from "../assets/save-btn.svg";
+import upDownBtnIcon from "../assets/up-down-btn.svg";
 
 // ── DATA STRUCTURES ──────────────────────────────────────────────────────────
 
@@ -277,19 +279,19 @@ const TermOutputCard: React.FC<TermOutputCardProps> = ({
         <div className="card-actions">
           {files && files.length > 0 && (
             <button onClick={downloadAll} className="download-btn">
-              <img src="/src/assets/save-btn.svg" alt="Download" className="filter" />
+              <img src={saveBtnIcon} alt="Download" className="filter" />
             </button>
           )}
           {hasCollapsible && (
             <button onClick={onToggle} className="code-toggle-btn">
               {isExpanded ? (
                 <img
-                  src="/src/assets/up-down-btn.svg"
+                  src={upDownBtnIcon}
                   alt="Hide"
                   className="filter Hide"
                 />
               ) : (
-                <img src="/src/assets/up-down-btn.svg" alt="View" className="filter" />
+                <img src={upDownBtnIcon} alt="View" className="filter" />
               )}
             </button>
           )}

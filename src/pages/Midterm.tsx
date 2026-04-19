@@ -44,8 +44,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       markdownPath: "/markdown/seatwork_2.md",
       filename: "SmartWalletSystemRivas.java",
       files: [
-        "BSIT2-3_Rivas_DaveAillerr_SmartWalletSystem.pdf",
-        "SmartWalletRivas.java",
+        "/files/seatwork/BSIT2-3_Rivas_DaveAillerr_SmartWalletSystem.pdf",
+        "/files/seatwork/SmartWalletRivas.java",
       ],
     },
     {
@@ -55,8 +55,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       markdownPath: "/markdown/seatwork_3.md",
       filename: "StudentAgeAnalyzerRivas.java",
       files: [
-        "BSIT_Rivas_DaveAillerr_StudentAgeAnalyzer.pdf",
-        "StudentAgeAnalyzerRivas.java",
+        "/files/seatwork/BSIT_Rivas_DaveAillerr_StudentAgeAnalyzer.pdf",
+        "/files/seatwork/StudentAgeAnalyzerRivas.java",
       ],
     },
   ],
@@ -66,14 +66,18 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       title: "Midterm Activity #1 - Variables",
       learnings: "",
       markdownPath: "/markdown/activity_1.md",
-      files: ["BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity#1.pdf"],
+      files: [
+        "/files/activity/BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity#1.pdf",
+      ],
     },
     {
       label: "Activity",
       title: "Midterm Activity #2 - Operators",
       learnings: "",
       markdownPath: "/markdown/activity_2.md",
-      files: ["BSIT2-3_Rivas_DaveAillerr_OperatorsActivity#2.pdf"],
+      files: [
+        "/files/activity/BSIT2-3_Rivas_DaveAillerr_OperatorsActivity#2.pdf",
+      ],
     },
     {
       label: "Activity",
@@ -83,8 +87,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       codePath: "/markdown/code_activity_3.md",
       filename: "BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
       files: [
-        "BSIT2-3_Rivas_DaveAillerr_BasicATMSystem.pdf",
-        "BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
+        "/files/activity/BSIT2-3_Rivas_DaveAillerr_BasicATMSystem.pdf",
+        "/files/activity/BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
       ],
     },
 
@@ -96,8 +100,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       codePath: "/markdown/code_activity_4.md",
       filename: "EnrollmentAssessmentSystemRivas.java",
       files: [
-        "BSIT2-3_Rivas_DaveAillerr_StudentEnrollmentAssessmentSystem.pdf",
-        "EnrollmentAssessmentSystemRivas.java",
+        "/files/activity/BSIT2-3_Rivas_DaveAillerr_StudentEnrollmentAssessmentSystem.pdf",
+        "/files/activity/EnrollmentAssessmentSystemRivas.java",
       ],
     },
     {
@@ -107,7 +111,10 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       markdownPath: "/markdown/activity_5.md",
       codePath: "/markdown/code_activity_5.md",
       filename: "ExpenseTrackerRivas.java",
-      files: ["ExpenseTrackerRivas.pdf", "ExpenseTrackerRivas.java"],
+      files: [
+        "/files/activity/ExpenseTrackerRivas.pdf",
+        "/files/activity/ExpenseTrackerRivas.java",
+      ],
     },
   ],
   others: [
@@ -117,7 +124,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings:
         "I learned a little bit about myself in this activity. Also shared my expectations for this subject.",
       markdownPath: "/markdown/about_me.md",
-      files: ["BSIT2-3_Rivas_DaveAillerr_AboutMe.pdf"],
+      files: ["/files/others/BSIT2-3_Rivas_DaveAillerr_AboutMe.pdf"],
     },
     {
       label: "Assignment",
@@ -125,7 +132,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings:
         "In this assignment, I learned that Java is a high-level, object-oriented programming language known for its simplicity and security, and one of its key features is platform independence, which allows programs to run on different systems through the Java Virtual Machine (JVM). I also learned the main components of a Java program, such as classes, methods, and variables, as well as the differences between JDK, JRE, and JVM. Additionally, I understood that Java is both compiled and interpreted, since the code is first compiled into bytecode and then executed by the JVM. Overall, this activity helped me better understand how Java works and why it is widely used.",
       markdownPath: "/markdown/assignment_1.md",
-      files: ["BSIT2-3_Rivas_DaveAillerr_IntroductiontoJava.pdf"],
+      files: ["/files/others/BSIT2-3_Rivas_DaveAillerr_IntroductiontoJava.pdf"],
     },
   ],
   exam: [
@@ -285,11 +292,7 @@ const TermOutputCard: React.FC<TermOutputCardProps> = ({
           {hasCollapsible && (
             <button onClick={onToggle} className="code-toggle-btn">
               {isExpanded ? (
-                <img
-                  src={upDownBtnIcon}
-                  alt="Hide"
-                  className="filter Hide"
-                />
+                <img src={upDownBtnIcon} alt="Hide" className="filter Hide" />
               ) : (
                 <img src={upDownBtnIcon} alt="View" className="filter" />
               )}

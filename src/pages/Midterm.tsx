@@ -44,8 +44,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       markdownPath: "/markdown/seatwork_2.md",
       filename: "SmartWalletSystemRivas.java",
       files: [
-        "/files/seatwork/BSIT2-3_Rivas_DaveAillerr_SmartWalletSystem.pdf",
-        "/files/seatwork/SmartWalletRivas.java",
+        "/files/seatwork2/BSIT2-3_Rivas_DaveAillerr_SmartWalletSystem.pdf",
+        "/files/seatwork2/SmartWalletRivas.java",
       ],
     },
     {
@@ -55,8 +55,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       markdownPath: "/markdown/seatwork_3.md",
       filename: "StudentAgeAnalyzerRivas.java",
       files: [
-        "/files/seatwork/BSIT_Rivas_DaveAillerr_StudentAgeAnalyzer.pdf",
-        "/files/seatwork/StudentAgeAnalyzerRivas.java",
+        "/files/seatwork3/BSIT_Rivas_DaveAillerr_StudentAgeAnalyzer.pdf",
+        "/files/seatwork3/StudentAgeAnalyzerRivas.java",
       ],
     },
   ],
@@ -67,7 +67,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings: "",
       markdownPath: "/markdown/activity_1.md",
       files: [
-        "/files/activity/BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity1.pdf",
+        "/files/Activity1/BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity1.pdf",
       ],
     },
     {
@@ -76,7 +76,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings: "",
       markdownPath: "/markdown/activity_2.md",
       files: [
-        "/files/activity/BSIT2-3_Rivas_DaveAillerr_OperatorsActivity2.pdf",
+        "/files/Activity2/BSIT2-3_Rivas_DaveAillerr_OperatorsActivity2.pdf",
       ],
     },
     {
@@ -87,8 +87,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       codePath: "/markdown/code_activity_3.md",
       filename: "BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
       files: [
-        "/files/activity/BSIT2-3_Rivas_DaveAillerr_BasicATMSystem.pdf",
-        "/files/activity/BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
+        "/files/Activity3/BSIT2-3_Rivas_DaveAillerr_BasicATMSystem.pdf",
+        "/files/Activity3/BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
       ],
     },
 
@@ -100,8 +100,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       codePath: "/markdown/code_activity_4.md",
       filename: "EnrollmentAssessmentSystemRivas.java",
       files: [
-        "/files/activity/BSIT2-3_Rivas_DaveAillerr_StudentEnrollmentAssessmentSystem.pdf",
-        "/files/activity/EnrollmentAssessmentSystemRivas.java",
+        "/files/Activity4/BSIT2-3_Rivas_DaveAillerr_StudentEnrollmentAssessmentSystem.pdf",
+        "/files/Activity4/EnrollmentAssessmentSystemRivas.java",
       ],
     },
     {
@@ -112,8 +112,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       codePath: "/markdown/code_activity_5.md",
       filename: "ExpenseTrackerRivas.java",
       files: [
-        "/files/activity/ExpenseTrackerRivas.pdf",
-        "/files/activity/ExpenseTrackerRivas.java",
+        "/files/Activity5/ExpenseTrackerRivas.pdf",
+        "/files/Activity5/ExpenseTrackerRivas.java",
       ],
     },
   ],
@@ -253,9 +253,9 @@ const TermOutputCard: React.FC<TermOutputCardProps> = ({
       // Clean accidental public paths
       let cleanPath = link.startsWith("/public") ? link.substring(7) : link;
 
-      // Ensure bare file names route gracefully to the public/files/ folder
+      // Ensure bare file names route gracefully to the /files/ folder
       if (!cleanPath.startsWith("/") && !cleanPath.startsWith("http")) {
-        cleanPath = `/files/seatwork3/${cleanPath}`;
+        cleanPath = `/files/${cleanPath}`;
       }
 
       const encodedPath = cleanPath

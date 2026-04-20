@@ -124,7 +124,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings:
         "I learned a little bit about myself in this activity. Also shared my expectations for this subject.",
       markdownPath: "/markdown/about_me.md",
-      files: ["/files/others/BSIT2-3_Rivas_DaveAillerr_AboutMe.pdf"],
+      files: ["/files/others/RIVAS_AboutMe.pdf"],
     },
     {
       label: "Assignment",
@@ -132,7 +132,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings:
         "In this assignment, I learned that Java is a high-level, object-oriented programming language known for its simplicity and security, and one of its key features is platform independence, which allows programs to run on different systems through the Java Virtual Machine (JVM). I also learned the main components of a Java program, such as classes, methods, and variables, as well as the differences between JDK, JRE, and JVM. Additionally, I understood that Java is both compiled and interpreted, since the code is first compiled into bytecode and then executed by the JVM. Overall, this activity helped me better understand how Java works and why it is widely used.",
       markdownPath: "/markdown/assignment_1.md",
-      files: ["/files/others/BSIT2-3_Rivas_DaveAillerr_IntroductiontoJava.pdf"],
+      files: ["/files/others/RIVAS_MidtermAssignment.pdf"],
     },
   ],
   exam: [

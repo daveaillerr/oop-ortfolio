@@ -67,7 +67,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings: "",
       markdownPath: "/markdown/activity_1.md",
       files: [
-        "/files/activity/BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity#1.pdf",
+        "/files/activity/BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity1.pdf",
       ],
     },
     {
@@ -76,7 +76,7 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
       learnings: "",
       markdownPath: "/markdown/activity_2.md",
       files: [
-        "/files/activity/BSIT2-3_Rivas_DaveAillerr_OperatorsActivity#2.pdf",
+        "/files/activity/BSIT2-3_Rivas_DaveAillerr_OperatorsActivity2.pdf",
       ],
     },
     {

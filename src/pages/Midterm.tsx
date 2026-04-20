@@ -239,39 +239,35 @@ const TermOutputCard: React.FC<TermOutputCardProps> = ({
       : codeContent;
 
   const downloadAll = () => {
-    // 1. Determine what we are downloading
     const targetLinks: string[] = [];
 
-    // Only download files explicitly placed in the files array
     if (files && files.length > 0) {
       if (typeof files === "string") targetLinks.push(files);
       else targetLinks.push(...files);
     }
 
-    // 2. Safely Process and Download simultaneously
     targetLinks.forEach((link, i) => {
-      // Clean accidental public paths
       let cleanPath = link.startsWith("/public") ? link.substring(7) : link;
 
-      // Ensure bare file names route gracefully to the /files/ folder
       if (!cleanPath.startsWith("/") && !cleanPath.startsWith("http")) {
         cleanPath = `/files/${cleanPath}`;
       }
 
-      const encodedPath = cleanPath
-        .split("/")
-        .map((segment) => encodeURIComponent(segment))
-        .join("/");
-
-      setTimeout(() => {
-        const a = document.createElement("a");
-        a.href = encodedPath;
-        // Keep the original filename
-        a.download = cleanPath.split("/").pop() || "download";
-
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+      setTimeout(async () => {
+        try {
+          const response = await fetch(cleanPath);
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = cleanPath.split("/").pop() || "download";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        } catch (error) {
+          console.error("Download failed:", error);
+        }
       }, i * 300);
     });
   };

@@ -64,7 +64,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
     {
       label: "Activity",
       title: "Midterm Activity #1 - Variables",
-      learnings: "",
+      learnings:
+        "In this activity, I learned about variables and how they are used to store and manipulate data in a program. I gained a better understanding of how to identify the correct variable and data types, as well as how values are stored in memory. I also learned how changes in memory affect the values assigned to variables during program execution. This knowledge is essential for writing efficient, organized, and error-free code. Overall, this activity helped me build a stronger foundations improved my understanding on programming.",
       markdownPath: "/markdown/activity_1.md",
       files: [
         "/files/Activity1/BSIT2-3_Rivas_DaveAillerr_CodeAnalysisActivity1.pdf",
@@ -73,7 +74,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
     {
       label: "Activity",
       title: "Midterm Activity #2 - Operators",
-      learnings: "",
+      learnings:
+        "In this activity, I learned about different operators in Java. I learned about a program that uses bitwise operators. Using bitwise operators allows us to perform operations on a binary level. It was interesting also interesting to see how ternary operators work. Ternary operators are a shorthand for if-else statements. Lastly, I learned about assignment operators and how to use them in a program. In multple operators demo, I learned how to utilize different operators in a program. Overall, this activity helped me gain a better understanding of operators in Java.",
       markdownPath: "/markdown/activity_2.md",
       files: [
         "/files/Activity2/BSIT2-3_Rivas_DaveAillerr_OperatorsActivity2.pdf",
@@ -82,7 +84,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
     {
       label: "Activity",
       title: "Midterm Activity #3 - Basic ATM System",
-      learnings: "",
+      learnings:
+        "In this activity, I build a basic ATM system that can perform basic operations such as checking balance, depositing, withdrawing. Utilizing switch case and if-else statement, I learned how to control the flow of the program and validate responses and use conditions to direct the program. Additionally, I added a do-while to ensure that the program will continue to run until the user decides to exit. Overall, this activity helped me understand the importance of control flow and validation in Java programs with the use of switch-case and if-else statements.",
       markdownPath: "/markdown/activity_3.md",
       codePath: "/markdown/code_activity_3.md",
       filename: "BSIT23_Rivas_DaveAillerr_BasicATMSystem.java",
@@ -95,7 +98,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
     {
       label: "Activity",
       title: "Midterm Activity #4 - Scholarship Qualification System",
-      learnings: "",
+      learnings:
+        "In this activity, I build a Student Enrollment Assessment System that creates a Java program that collects student details using the Java Scanner Class, computes a final score based on entrance exam and interview results, and determines admission status through nested if statements. It also uses a switch statement to recommend programs based on the student's strand. Overall, the activity use input handling, conditional logic, and formula-based computation to simulate an enrollment process.",
       markdownPath: "/markdown/activity_4.md",
       codePath: "/markdown/code_activity_4.md",
       filename: "EnrollmentAssessmentSystemRivas.java",
@@ -107,7 +111,8 @@ const midtermContent: Record<Tab, MidtermItem[]> = {
     {
       label: "Activity",
       title: "Midterm Activity #5 - Personal Expense Tracker",
-      learnings: "",
+      learnings:
+        "In this activity, the focus is on applying the use of methods in a Personal Expense Tracker System, where different tasks are divided into separate functions such as displaying the program title, calculating total expenses, checking the budget status, and showing results. The program demonstrates how both void and non-void methods, along with proper parameters and return values, help program efficiently, making it more modular, readable, and easier to manage while simulating real-world expense tracking.",
       markdownPath: "/markdown/activity_5.md",
       codePath: "/markdown/code_activity_5.md",
       filename: "ExpenseTrackerRivas.java",
